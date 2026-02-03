@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="200" viewBox="0 0 600 200" role="img" aria-label="Sewa Sathi wordmark logo">
+  <defs>
+    <style>
+      .brand { font-family: 'Poppins', 'Noto Sans', sans-serif; font-weight:700; }
+      .hindi { font-family: 'Noto Sans Devanagari', 'Noto Sans', sans-serif; font-weight:700; }
+    </style>
+  </defs>
+  <!-- Icon: simple caring figure + heart -->
+  <g transform="translate(30,30)">
+    <!-- semicircles as arms forming a heart-like shape -->
+    <path d="M40 40 C10 10, 10 70, 40 40" fill="#2B8A78" opacity="0.9" />
+    <path d="M100 40 C130 10, 130 70, 100 40" fill="#2B8A78" opacity="0.9" />
+    <!-- head -->
+    <circle cx="70" cy="40" r="12" fill="#F2C94C" />
+    <!-- body -->
+    <path d="M70 52 C70 70, 70 70, 70 92" stroke="#2B8A78" stroke-width="6" stroke-linecap="round" fill="none" />
+  </g>
+
+  <!-- Text -->
+  <text x="170" y="70" class="brand" font-size="36" fill="#153243">Sewa Sathi</text>
+  <text x="170" y="102" class="hindi" font-size="20" fill="#3B6E61">सेवा साथी</text>
+
+  <!-- Accent line -->
+  <rect x="170" y="110" width="170" height="4" rx="2" fill="#2B8A78" opacity="0.95" />
+</svg>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Razorpay Node.js Demo</title>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <style>
+        body { font-family: sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; background: #f4f7f6; }
+        .card { background: white; padding: 2rem; border-radius: 1rem; shadow: 0 4px 6px rgba(0,0,0,0.1); text-align: center; }
+        button { background: #3399cc; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-size: 1.1rem; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>Razorpay Payment Demo</h1>
+        <p>Pay ₹500 for a test service</p>
+        <button id="pay-button">Pay Now</button>
+    </div>
+
+    <script>
+        document.getElementById('pay-button').onclick = async function(e) {
+            // 1. Create Order on Backend
+            const response = await fetch('/create-order', { method: 'POST' });
+            const order = await response.json();
+
+            // 2. Open Razorpay Checkout
+            const options = {
+                "key": "rzp_test_1DP5mmOlF5G5ag", // Same as server
+                "amount": order.amount,
+                "currency": "INR",
+                "name": "Pintu Service Marketplace",
+                "description": "Test Transaction",
+                "order_id": order.id,
+                "handler": async function (response){
+                    // 3. Verify Payment on Backend
+                    const verifyRes = await fetch('/verify-payment', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(response)
+                    });
+                    const result = await verifyRes.json();
+                    alert(result.message);
+                },
+                "prefill": {
+                    "name": "Arjun Kumar",
+                    "email": "arjun@example.com",
+                    "contact": "9999999999"
+                },
+                "theme": { "color": "#3399cc" }
+            };
+            const rzp1 = new Razorpay(options);
+            rzp1.open();
+            e.preventDefault();
+        }
+    </script>
+</body>
+</html>
